@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'storage_service.dart';
 
+
 class LoginPage extends StatefulWidget {
 @override
 _LoginPageState createState() => _LoginPageState();
@@ -25,7 +26,7 @@ final String phone = _phoneController.text;
 final String password = _passwordController.text;
 
 final response = await http.post(
-Uri.parse('http://192.168.100.11:8080/authenticate'),
+Uri.parse('http://194.163.173.3:8888/authenticate'),
 headers: <String, String>{
 'Content-Type': 'application/json; charset=UTF-8',
 },
@@ -43,6 +44,7 @@ final token = responseData['token'];
 
 await _storageService.saveUser({'userId': userId, 'phone': phone});
 await _storageService.saveToken(token);
+await _storageService.saveuserId(userId);
 
 Navigator.pushReplacementNamed(context, '/'); // Rediriger vers la page des produits
 } else {

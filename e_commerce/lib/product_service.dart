@@ -14,15 +14,15 @@ class ProductService {
   final StorageService _storageService = StorageService();
   
 
-  final String wishlistUrl = 'http://192.168.100.11:8080/api/customer/wishlist';
-  final String wishlistUrll = 'http://192.168.100.11:8080/api/customer/wishlist';
+  final String wishlistUrl = 'http://194.163.173.3:8888/api/customer/wishlist';
+  final String wishlistUrll = 'http://194.163.173.3:8888/api/customer/wishlist';
 
-  final String cartUrl = 'http://192.168.100.11:8080/api/customer/cart';
+  final String cartUrl = 'http://194.163.173.3:8888/api/customer/cart';
 
   Future<List<Product>> fetchProducts(BuildContext context,String langg) async {
     String selectedLanguage = Provider.of<LanguageProvider>(context, listen: false).selectedLanguage;
     final lang = await _storageService.getLang();
-    final String apiUrl = 'http://192.168.100.11:8080/api/admin/ouvert/products?lang=$langg';
+    final String apiUrl = 'http://194.163.173.3:8888/api/admin/ouvert/products?lang=$langg';
     
     print("_________________________________________________________________________________________________________________");
     print(lang);
