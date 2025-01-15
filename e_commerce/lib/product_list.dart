@@ -95,7 +95,7 @@ class _ProductListState extends State<ProductList> {
         Provider.of<LanguageProvider>(context, listen: false).selectedLanguage;
     lang = await _storageService.getLang();
     final response = await http.get(Uri.parse(
-        'http://192.168.100.11:8080/api/admin/ouvert/categories?lang=$lang'));
+        'http://194.163.173.3:8888/api/admin/ouvert/categories?lang=$lang'));
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
       setState(() {
@@ -121,7 +121,7 @@ class _ProductListState extends State<ProductList> {
     String selectedLanguage =
         Provider.of<LanguageProvider>(context, listen: false).selectedLanguage;
     final response = await http.get(Uri.parse(
-        'http://192.168.100.11:8080/api/admin/ouvert/$categoryId/subcategories?lang=$selectedLanguage'));
+        'http://194.163.173.3:8888/api/admin/ouvert/$categoryId/subcategories?lang=$selectedLanguage'));
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
       setState(() {
@@ -144,7 +144,7 @@ class _ProductListState extends State<ProductList> {
     String selectedLanguage =
         Provider.of<LanguageProvider>(context, listen: false).selectedLanguage;
     final response = await http.get(Uri.parse(
-        'http://192.168.100.11:8080/api/admin/ouvert/category/$categoryId?lang=$selectedLanguage'));
+        'http://194.163.173.3:8888/api/admin/ouvert/category/$categoryId?lang=$selectedLanguage'));
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
       final products = data.map((item) => Product.fromJson(item)).toList();
@@ -257,7 +257,7 @@ class _ProductListState extends State<ProductList> {
     if (user != null) {
       final userId = user['userId'];
       final response = await http.get(
-        Uri.parse('http://192.168.100.11:8080/api/customer/cart/$userId'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/cart/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json;',
           'Authorization': 'Bearer $token',
@@ -287,7 +287,7 @@ class _ProductListState extends State<ProductList> {
     if (user != null) {
       final userId = user['userId'];
       final response = await http.get(
-        Uri.parse('http://192.168.100.11:8080/api/customer/wishlist/$userId'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/wishlist/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json; ',
           'Authorization': 'Bearer $token',
@@ -313,7 +313,7 @@ class _ProductListState extends State<ProductList> {
     if (user != null) {
       final userId = user['userId'];
       final response = await http.post(
-        Uri.parse('http://192.168.100.11:8080/api/customer/addition'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/addition'),
         headers: <String, String>{
           'Content-Type': 'application/json ',
           'Authorization': 'Bearer $token',
@@ -349,7 +349,7 @@ class _ProductListState extends State<ProductList> {
     if (user != null) {
       final userId = user['userId'];
       final response = await http.post(
-        Uri.parse('http://192.168.100.11:8080/api/customer/deduction'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/deduction'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -385,7 +385,7 @@ class _ProductListState extends State<ProductList> {
     } else {
       final userId = user['userId'];
       final response = await http.post(
-        Uri.parse('http://192.168.100.11:8080/api/customer/cart'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/cart'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -429,7 +429,7 @@ class _ProductListState extends State<ProductList> {
     } else {
       final userId = user['userId'];
       final response = await http.post(
-        Uri.parse('http://192.168.100.11:8080/api/customer/wishlist'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/wishlist'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -475,7 +475,7 @@ class _ProductListState extends State<ProductList> {
       final userId = user['userId'];
       final response = await http.delete(
         Uri.parse(
-            'http://192.168.100.11:8080/api/customer/removedd/$productId/$userId'),
+            'http://194.163.173.3:8888/api/customer/removedd/$productId/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -509,7 +509,7 @@ class _ProductListState extends State<ProductList> {
       final userId = user['userId'];
       final response = await http.delete(
         Uri.parse(
-            'http://192.168.100.11:8080/api/customer/removee/$productId/$userId'),
+            'http://194.163.173.3:8888/api/customer/removee/$productId/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json; ',
           'Authorization': 'Bearer $token',
@@ -539,7 +539,7 @@ class _ProductListState extends State<ProductList> {
     } else {
       final userId = user['userId'];
       final response = await http.post(
-        Uri.parse('http://192.168.100.11:8080/api/customer/wishlist'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/wishlist'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',

@@ -60,7 +60,7 @@ class _CartPageState extends State<CartPage> {
   Future<void> _fetchminorder() async {
     final String? token = await getToken();
     final response = await http.get(
-        Uri.parse('http://192.168.100.11:8080/minOrderValue'),
+        Uri.parse('http://194.163.173.3:8888/minOrderValue'),
         headers: <String, String>{
           'Content-Type': 'application/json; ',
           'Authorization': 'Bearer $token',

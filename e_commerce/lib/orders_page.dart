@@ -39,7 +39,7 @@ class _OrdersPageState extends State<OrdersPage> {
     if (userId != null) {
       try {
         final response = await http.get(Uri.parse(
-            'http://192.168.100.11:8080/api/customer/myOrders/$userId'),   headers: <String, String>{
+            'http://194.163.173.3:8888/api/customer/myOrders/$userId'),   headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
         });

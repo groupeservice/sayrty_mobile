@@ -1,7 +1,7 @@
 
 
-import 'package:e_commerce/language_provider.dart';
-import 'package:e_commerce/traduction.dart';
+import 'language_provider.dart';
+import 'traduction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +25,7 @@ final String phone = _phoneController.text;
 final String password = _passwordController.text;
 
 final response = await http.post(
-Uri.parse('http://192.168.100.11:8080/authenticate'),
+Uri.parse('http://194.163.173.3:8888/authenticate'),
 headers: <String, String>{
 'Content-Type': 'application/json; charset=UTF-8',
 },

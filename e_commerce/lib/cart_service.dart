@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'language_provider.dart';
 
 class CartService {
-  static const String baseUrl = 'http://192.168.100.11:8080/api/customer';
+  static const String baseUrl = 'http://194.163.173.3:8888/api/customer';
     Future<String?> getToken() async {
     final SharedPreferences autht = await SharedPreferences.getInstance();
     return autht.getString('ecom-token');

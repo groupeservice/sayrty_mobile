@@ -5,7 +5,7 @@ import 'login_page.dart';
 import 'signup_page.dart';
 import 'cart_page.dart';
 import 'orders_page.dart';
-import 'package:e_commerce/WishlistPage.dart';
+import 'WishlistPage.dart';
 import 'language_provider.dart'; // Importer le fournisseur de langue
 
 void main() {

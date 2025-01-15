@@ -1,4 +1,4 @@
-import 'package:e_commerce/product_list.dart';
+import 'product_list.dart';
 import 'package:flutter/material.dart';
 import 'product_model.dart';
 import 'language_provider.dart';
@@ -38,7 +38,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       final userId = user['userId'];
       final String? token = await getToken();
       final response = await http.get(
-        Uri.parse('http://192.168.100.11:8080/api/customer/cart/$userId'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/cart/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -62,7 +62,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       final userId = user['userId'];
       final String? token = await getToken();
       final response = await http.post(
-        Uri.parse('http://192.168.100.11:8080/api/customer/cart'),
+        Uri.parse('http://194.163.173.3:8888/api/customer/cart'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
