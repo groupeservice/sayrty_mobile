@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'storage_service.dart';
 
+
 class LoginPage extends StatefulWidget {
 @override
 _LoginPageState createState() => _LoginPageState();
@@ -43,6 +44,7 @@ final token = responseData['token'];
 
 await _storageService.saveUser({'userId': userId, 'phone': phone});
 await _storageService.saveToken(token);
+await _storageService.saveuserId(userId);
 
 Navigator.pushReplacementNamed(context, '/'); // Rediriger vers la page des produits
 } else {

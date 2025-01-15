@@ -17,9 +17,9 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+ bool _acceptedTerms = false;
   Future<void> _signup() async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()  && _acceptedTerms) {
       final String name = _nameController.text;
       final String phone = _phoneController.text;
       final String password = _passwordController.text;
@@ -47,6 +47,11 @@ class _SignupPageState extends State<SignupPage> {
         );
       }
     }
+    else if (!_acceptedTerms) { // Afficher un message d'erreur si les conditions ne sont pas acceptées
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(translate('accept_terms', Provider.of<LanguageProvider>(context, listen: false).selectedLanguage))),
+      );
+    }
   }
 
   @override
@@ -70,6 +75,7 @@ class _SignupPageState extends State<SignupPage> {
                 color: Colors.blue,
               ),
               SizedBox(height: 20),
+              
               Text(
                 translate('create_account', Provider.of<LanguageProvider>(context, listen: false).selectedLanguage),
                 style: TextStyle(
@@ -146,16 +152,25 @@ class _SignupPageState extends State<SignupPage> {
                       },
                     ),
                     SizedBox(height: 20),
+                  CheckboxListTile(
+                      title: Text(translate('accept_terms_and_conditions', Provider.of<LanguageProvider>(context, listen: false).selectedLanguage)),
+                      value: _acceptedTerms,
+                      onChanged: (value) {
+                        setState(() {
+                          _acceptedTerms = value!;
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity.leading,
+                    ),
+                    SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _signup,
                       child: Text(translate('create_account', Provider.of<LanguageProvider>(context, listen: false).selectedLanguage)),
                       style: ElevatedButton.styleFrom(
-                          
                         padding: EdgeInsets.symmetric(
                           horizontal: 50,
                           vertical: 15,
                         ),
-                      
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),

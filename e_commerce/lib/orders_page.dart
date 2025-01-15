@@ -67,7 +67,7 @@ class _OrdersPageState extends State<OrdersPage> {
 
   try {
     final uri = Uri.http(
-      '192.168.100.11:8080', 
+      '194.163.173.3:8888', 
       '/api/customer/cartI/$userId',
       {
         'orderId': orderId.toString(),

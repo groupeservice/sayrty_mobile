@@ -140,6 +140,35 @@ class _ProductListState extends State<ProductList> {
     }
   }
 
+    Future<int> getUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt("USERId") ?? 0;
+  }
+
+Future<void> _deleteUser() async {
+  try {
+
+    final int userId = await getUserId() ;
+    final response = await http.delete(
+      Uri.parse('http://192.168.100.165:8080/$userId'), // Utilise le userId passé en paramètre
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTczNDY5NzQ5MCwiZXhwIjoyNTM0MDEzMDg2OTB9.E3bb9-4Xkz4kn-DIrhGF-nQHmKtr6XBwkT9Dhkf_3qw',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('Utilisateur supprimé avec succès.');
+      _logout(); // Déconnecte l'utilisateur après suppression
+    } else {
+      print('Échec de la suppression. Code de réponse : ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Erreur lors de la suppression de l\'utilisateur : $e');
+  }
+}
+
   Future<void> _loadProductsByCategory(int categoryId) async {
     String selectedLanguage =
         Provider.of<LanguageProvider>(context, listen: false).selectedLanguage;
@@ -374,9 +403,7 @@ class _ProductListState extends State<ProductList> {
     }
   }
 
-
   Future<void> _addToCart(int productId) async {
-
     final user = await _storageService.getUser();
     final String? token = await getToken();
     print('bdh $token');
@@ -596,7 +623,35 @@ class _ProductListState extends State<ProductList> {
                 if (isLoggedIn)
                   IconButton(
                     icon: Icon(Icons.logout),
-                    onPressed: _logout,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Confirmation"),
+                            content: Text("Que voulez-vous faire ?"),
+                            actions: [
+                          TextButton(
+  onPressed: () {
+    Navigator.of(context).pop(); // Ferme le dialogue
+    _deleteUser(); // Appelle la méthode pour supprimer l'utilisateur
+  },
+  child: Text("Supprimez votre compte"),
+),
+                              TextButton(
+                                onPressed: () {
+                                  // Action pour "Logout"
+                                  Navigator.of(context)
+                                      .pop(); // Ferme le dialogue
+                                  _logout(); // Appelez votre méthode de déconnexion
+                                },
+                                child: Text("Logout"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   )
                 else
                   IconButton(
